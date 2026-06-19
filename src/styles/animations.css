@@ -1,0 +1,198 @@
+/* ========================================
+   ANIMATION UTILITIES
+   ======================================== */
+
+/* --- Reveal Animations --- */
+.anim-fade-up {
+  opacity: 0;
+  transform: translateY(60px);
+}
+
+.anim-fade-down {
+  opacity: 0;
+  transform: translateY(-60px);
+}
+
+.anim-fade-left {
+  opacity: 0;
+  transform: translateX(-60px);
+}
+
+.anim-fade-right {
+  opacity: 0;
+  transform: translateX(60px);
+}
+
+.anim-fade-in {
+  opacity: 0;
+}
+
+.anim-scale-up {
+  opacity: 0;
+  transform: scale(0.85);
+}
+
+.anim-rotate-in {
+  opacity: 0;
+  transform: rotate(-5deg) scale(0.9);
+}
+
+/* --- Stagger children --- */
+.anim-stagger > * {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+/* --- Parallax --- */
+.parallax-layer {
+  will-change: transform;
+}
+
+/* --- Magnetic button wrapper --- */
+.magnetic-wrap {
+  display: inline-block;
+  position: relative;
+}
+
+/* --- Text split lines --- */
+.split-line {
+  overflow: hidden;
+  display: block;
+}
+
+.split-line .line-inner {
+  display: block;
+  transform: translateY(105%);
+}
+
+/* --- Image reveal mask --- */
+.img-reveal {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-reveal::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--primary);
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.img-reveal.revealed::after {
+  transform: scaleX(0);
+  transform-origin: right;
+}
+
+.img-reveal img {
+  transform: scale(1.1);
+  transition: transform 1.4s var(--ease-out);
+}
+
+.img-reveal.revealed img {
+  transform: scale(1);
+}
+
+/* --- Counter animation --- */
+.counter-value {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+}
+
+/* --- Floating animation --- */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(3deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* --- Gold shimmer text --- */
+.gold-shimmer {
+  background: linear-gradient(90deg,
+    var(--primary) 0%,
+    var(--primary-light) 25%,
+    var(--primary) 50%,
+    var(--primary-light) 75%,
+    var(--primary) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* --- Underline grow --- */
+.underline-grow {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-grow::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width var(--duration-base) var(--ease-out);
+}
+
+.underline-grow:hover::after {
+  width: 100%;
+}
+
+/* --- Cursor glow --- */
+.cursor-glow {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 169, 110, 0.06), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .cursor-glow {
+    display: none;
+  }
+}
+
+/* --- Horizontal scroll section --- */
+.horizontal-scroll-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.horizontal-scroll-track {
+  display: flex;
+  gap: var(--space-lg);
+  will-change: transform;
+}
